@@ -1,20 +1,13 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import logo from "./assets/logo.png";
-import { useFonts } from "@use-expo/font";
+
+import Loading from "./components/Loading"
 
 export default function App() {
-  const [fontsLoaded] = useFonts({
-    "Rubik": require("./assets/fonts/Rubik/Rubik-Bold.ttf"),
-  });
+ 
   return (
     <View style={styles.container}>
-      <Image source={logo} style={{ width: 200, height: 128 }} />
-     { fontsLoaded ? <Text
-        style={{ color: "#000", fontSize: 52, fontFamily: "Rubik" }}
-      >
-        ./bin
-      </Text> : null}
+     <Loading></Loading>
     </View>
   );
 }
@@ -26,4 +19,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+
+  button: {
+    textAlign: "center",
+    position: 'absolute',
+    bottom:25
+  }
 });
