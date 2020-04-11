@@ -5,18 +5,24 @@ import { useFonts } from "@use-expo/font";
 
 export default function Loading() {
   const [fontsLoaded] = useFonts({
-    "Rubik": require("../assets/fonts/Rubik/Rubik-Bold.ttf"),
+    Rubik: require("../assets/fonts/Rubik/Rubik-Bold.ttf"),
   });
   return (
     <View style={styles.container}>
-      <Image source={logo} style={{ width: 200, height: 128 }} />
-     { fontsLoaded ? <Text
-        style={{ color: "#000", fontSize: 52, fontFamily: "Rubik" }}
-      >
-        ./bin
-      </Text> : null}
+      <Image
+        source={logo}
+        style={{ width: 200, height: 128, marginTop: -100 }}
+      />
+      {fontsLoaded ? (
+        <Text style={{ color: "#000", fontSize: 52, fontFamily: "Rubik" }}>
+          ./bin
+        </Text>
+      ) : null}
 
-      <Text style = {styles.button}> Created by: <br/> Bruno Morelli, Alberto Mosconi, Matteo Oldani</Text>
+      <Text style={styles.button}>
+        {" "}
+        Created by: {"\n"} Bruno Morelli, Alberto Mosconi, Matteo Oldani
+      </Text>
     </View>
   );
 }
@@ -31,7 +37,7 @@ const styles = StyleSheet.create({
 
   button: {
     textAlign: "center",
-    position: 'absolute',
-    bottom:25
-  }
+    position: "absolute",
+    bottom: 25,
+  },
 });
