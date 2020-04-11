@@ -38,6 +38,6 @@ const styles = StyleSheet.create({
   button: {
     textAlign: "center",
     position: "absolute",
-    bottom: 25,
+    bottom: 50,
   },
 });
