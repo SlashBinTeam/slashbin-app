@@ -2,9 +2,11 @@ import { Camera } from "expo-camera";
 import { Button, Text, Icon } from "galio-framework";
 import React, { useEffect, useState } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
+import * as FileSystem from "expo-file-system";
 
 export default Scanning = () => {
   const [hasPermission, setHasPermission] = useState(null);
+  let camera = null;
 
   useEffect(() => {
     (async () => {
@@ -19,9 +21,27 @@ export default Scanning = () => {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+
+  const takePicture = async () => {
+    if (Camera) {
+      let photo = await camera.takePictureAsync({ quality: 0.5 });
+      console.log(photo);
+      FileSystem.copyAsync({
+        from: photo["uri"],
+        to: FileSystem.documentDirectory + "prova.jpg",
+      }).then((uri) => {
+        console.log("Finished downloading to ", uri);
+      });
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} ratio="1:1" />
+      <Camera
+        style={styles.camera}
+        ratio="18:9"
+        ref={(cam) => (camera = cam)}
+      />
       {/* <Icon
         style={styles.icon}
         name="crosshairs"
@@ -38,6 +58,7 @@ export default Scanning = () => {
         color="#27ae60"
         iconColor="#fff"
         style={styles.button}
+        onPress={takePicture}
       >
         warning
       </Button>
@@ -53,7 +74,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
   },
   camera: {
-    width: (Dimensions.get("screen").height * 3) / 4,
+    width: (Dimensions.get("screen").height * 9) / 18,
     height: Dimensions.get("screen").height,
   },
   button: {
@@ -65,12 +86,13 @@ const styles = StyleSheet.create({
   },
   overlay: {
     position: "absolute",
-    top: Dimensions.get("screen").height / 2 - 150,
-    width: 300,
-    height: 300,
+    top: Dimensions.get("screen").height / 2 - 180,
+    width: "90%",
+    height: Dimensions.get("screen").width * 0.9,
     opacity: 0.3,
     borderColor: "white",
     borderStyle: "dashed",
+    borderRadius: 20,
     borderWidth: 5,
   },
   icon: {
