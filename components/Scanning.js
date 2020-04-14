@@ -22,16 +22,35 @@ export default Scanning = () => {
     return <Text>No access to camera</Text>;
   }
 
+  const getDataUsingGet = () => {
+    //GET request
+    fetch("http://192.168.0.3:5010/", {
+      method: "GET",
+      //Request Type
+    })
+      //   .then((response) => response.json())
+      .then((responseJson) => {
+        alert(JSON.stringify(responseJson));
+        // console.log(responseJson);
+      })
+      .catch((error) => {
+        alert(JSON.stringify(error));
+        console.error(error);
+      });
+  };
+
   const takePicture = async () => {
     if (Camera) {
-      let photo = await camera.takePictureAsync({ quality: 0.5 });
-      console.log(photo);
-      FileSystem.copyAsync({
-        from: photo["uri"],
-        to: FileSystem.documentDirectory + "prova.jpg",
-      }).then((uri) => {
-        console.log("Finished downloading to ", uri);
-      });
+      let photo = await camera.takePictureAsync({ base64: true, quality: 0.5 });
+      console.log(Object.keys(photo));
+      //   FileSystem.moveAsync({
+      //     from: photo["uri"],
+      //     to: "",
+      //   }).then((uri) => {
+      //     console.log("Finished downloading to ");
+      //   });
+
+      getDataUsingGet();
     }
   };
 
