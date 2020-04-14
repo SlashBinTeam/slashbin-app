@@ -22,13 +22,14 @@ export default Scanning = () => {
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} ratio="1:1" />
-      <Icon
+      {/* <Icon
         style={styles.icon}
-        name="center-focus-weak"
+        name="crosshairs"
         family="materialicons"
         color="red"
         // size={300}
-      />
+      /> */}
+      <View style={styles.overlay}></View>
       <Button
         onlyIcon
         icon="camera-alt"
@@ -61,6 +62,16 @@ const styles = StyleSheet.create({
     marginHorizontal: Dimensions.get("screen").width / 2 - 40,
     width: 80,
     height: 60,
+  },
+  overlay: {
+    position: "absolute",
+    top: Dimensions.get("screen").height / 2 - 150,
+    width: 300,
+    height: 300,
+    opacity: 0.3,
+    borderColor: "white",
+    borderStyle: "dashed",
+    borderWidth: 5,
   },
   icon: {
     position: "absolute",
