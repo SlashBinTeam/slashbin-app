@@ -22,20 +22,24 @@ export default Scanning = () => {
     return <Text>No access to camera</Text>;
   }
 
-  const getDataUsingGet = () => {
+  const sendImage = (photo) => {
     //GET request
     fetch("http://192.168.0.3:5010/", {
-      method: "GET",
+      method: "POST",
+      headers: {
+        "content-type": "image/jpg",
+      },
+      body: photo,
       //Request Type
     })
-      //   .then((response) => response.json())
+      .then((response) => response.json())
       .then((responseJson) => {
-        alert(JSON.stringify(responseJson));
-        // console.log(responseJson);
+        alert(responseJson);
+        console.log(responseJson);
       })
       .catch((error) => {
         alert(JSON.stringify(error));
-        console.error(error);
+        console.error("no");
       });
   };
 
@@ -50,7 +54,7 @@ export default Scanning = () => {
       //     console.log("Finished downloading to ");
       //   });
 
-      getDataUsingGet();
+      sendImage(photo);
     }
   };
 
