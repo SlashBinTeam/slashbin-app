@@ -1,8 +1,7 @@
 import { Camera } from "expo-camera";
-import { Button, Text, Icon } from "galio-framework";
+import { Button, Text } from "galio-framework";
 import React, { useEffect, useState } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
-import * as FileSystem from "expo-file-system";
 
 const url = "http://192.168.0.5:5010/";
 
@@ -24,72 +23,13 @@ export default Scanning = () => {
     return <Text>No access to camera</Text>;
   }
 
-  /**
-   * Convert a base64 string in a Blob according to the data and contentType.
-   *
-   * @param b64Data {String} Pure base64 string without contentType
-   * @param contentType {String} the content type of the file i.e (image/jpeg - image/png - text/plain)
-   * @param sliceSize {Int} SliceSize to process the byteCharacters
-   * @see http://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript
-   * @return Blob
-   */
-
-  const b64toBlob = (b64Data, contentType, sliceSize) => {
-    contentType = contentType || "";
-    sliceSize = sliceSize || 512;
-
-    var byteCharacters = atob(b64Data);
-    var byteArrays = [];
-
-    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-      var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-      var byteNumbers = new Array(slice.length);
-      for (var i = 0; i < slice.length; i++) {
-        byteNumbers[i] = slice.charCodeAt(i);
-      }
-
-      var byteArray = new Uint8Array(byteNumbers);
-
-      byteArrays.push(byteArray);
-    }
-
-    var blob = new Blob(byteArrays, { type: contentType });
-    return blob;
-  };
-
   const sendImage = (photo) => {
-    //GET request
-
-    // const blob = b64toBlob(photo.base64, "image/jpg");
-    // const data = new FormData();
-    // data.append("image", blob);
-    // data.append("photo", {
-    //   uri: photo.uri,
-    //   type: "image/jpg", // or photo.type
-    //   name: "testPhotoName",
-    // });
-    // fetch(url, {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //   },
-    //   body: data,
-    // })
-    //   .then((response) => response.json())
-    //   .then((responseJson) => {
-    //     alert(responseJson);
-    //     console.log(responseJson);
-    //   })
-    //   .catch((error) => {
-    //     // alert(JSON.stringify(error));
-    //     console.log("error");
-    //     console.error(error);
-    //   });
-
+    // POST request to flask api with the image taken from the camera
     let prediction;
 
     const data = new FormData();
+    data.append("height", photo.height);
+    data.append("width", photo.width);
     data.append("photo", {
       uri: photo.uri,
       type: "image/jpeg", // or photo.type
@@ -105,40 +45,42 @@ export default Scanning = () => {
       })
       .then((responseJson) => {
         prediction = JSON.parse(responseJson);
+        console.log(prediction, typeof prediction.result);
         switch (prediction.result) {
           case "0":
             prediction = "cardboard";
+            break;
           case "1":
             prediction = "glass";
+            break;
           case "2":
             prediction = "metal";
+            break;
           case "3":
             prediction = "paper";
+            break;
           case "4":
             prediction = "plastic";
+            break;
           case "5":
             prediction = "trash";
+            break;
           default:
+            prediction = "error in classifying";
         }
         alert(prediction);
       })
       .catch((error) => {
-        // alert(JSON.stringify(error));
         console.log("error");
         console.error(error);
       });
   };
 
   const takePicture = async () => {
+    // snap picture and call function to send it to server
     if (Camera) {
-      let photo = await camera.takePictureAsync({ base64: true, quality: 1 });
+      let photo = await camera.takePictureAsync({ base64: true, quality: 0.4 });
       console.log(Object.keys(photo));
-      //   FileSystem.moveAsync({
-      //     from: photo["uri"],
-      //     to: "",
-      //   }).then((uri) => {
-      //     console.log("Finished downloading to ");
-      //   });
 
       sendImage(photo);
     }
@@ -151,13 +93,7 @@ export default Scanning = () => {
         ratio="18:9"
         ref={(cam) => (camera = cam)}
       />
-      {/* <Icon
-        style={styles.icon}
-        name="crosshairs"
-        family="materialicons"
-        color="red"
-        // size={300}
-      /> */}
+
       <View style={styles.overlay}></View>
       <Button
         onlyIcon
@@ -203,12 +139,5 @@ const styles = StyleSheet.create({
     borderStyle: "dashed",
     borderRadius: 20,
     borderWidth: 5,
-  },
-  icon: {
-    position: "absolute",
-    top: Dimensions.get("screen").height / 2 - 150,
-    fontSize: 300,
-    color: "white",
-    opacity: 0.2,
   },
 });
