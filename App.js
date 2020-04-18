@@ -1,18 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { View } from "react-native";
-
+import { useFonts } from "@use-expo/font";
+import React, { useEffect, useState } from "react";
+import CameraPage from "./components/CameraPage";
 import Loading from "./components/Loading";
-import ScanPage from "./components/ScanPage";
-import Scanning from "./components/Scanning";
+import { AppLoading } from "expo";
 
 export default function App() {
-  const [ready, setReady] = useState(1);
-
+  const [fontsLoaded] = useFonts({
+    "rubik-regular": require("./assets/fonts/Rubik/Rubik-Regular.ttf"),
+    "rubik-bold": require("./assets/fonts/Rubik/Rubik-Bold.ttf"),
+    "rubik-black": require("./assets/fonts/Rubik/Rubik-Black.ttf"),
+  });
+  const [ready, setReady] = useState(0);
   useEffect(() => {
     setTimeout(() => {
-      setReady(0);
+      setReady(1);
     }, 2000);
   });
 
-  return <View style={{ flex: 1 }}>{ready ? <Loading /> : <Scanning />}</View>;
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
+  return ready ? <CameraPage /> : <Loading />;
 }

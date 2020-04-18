@@ -11,51 +11,6 @@ export default Scanning = () => {
   const [displayResult, setDisplayResult] = useState(0);
   const [result, setResult] = useState("");
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "black",
-    },
-    camera: {
-      width: (Dimensions.get("screen").height * 9) / 18,
-      height: Dimensions.get("screen").height,
-      opacity: displayResult ? 0.3 : 1,
-      flex: 1,
-      alignItems: "center",
-    },
-    button: {
-      position: "absolute",
-      bottom: 80,
-      marginHorizontal: Dimensions.get("screen").width / 2 - 40,
-      width: 80,
-      height: 60,
-    },
-    overlay: {
-      position: "absolute",
-      top: Dimensions.get("screen").height / 2 - 180,
-      width: "90%",
-      height: Dimensions.get("screen").width * 0.9,
-      opacity: 0.3,
-      borderColor: "white",
-      borderStyle: "dashed",
-      borderRadius: 20,
-      borderWidth: 5,
-    },
-    result: {
-      flex: 1,
-      zIndex: 10,
-      position: "absolute",
-      bottom: 0,
-      height: "60%",
-      width: "100%",
-      backgroundColor: "white",
-      padding: 30,
-      alignItems: "center",
-      borderRadius: 20,
-    },
-  });
   let camera = null;
 
   useEffect(() => {
@@ -117,7 +72,11 @@ export default Scanning = () => {
 
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} ratio="18:9" ref={(cam) => (camera = cam)}>
+      <Camera
+        style={{ ...styles.camera, opacity: displayResult ? 0.3 : 1 }}
+        ratio="18:9"
+        ref={(cam) => (camera = cam)}
+      >
         <Button
           onlyIcon
           icon="camera-alt"
@@ -159,3 +118,48 @@ export default Scanning = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "black",
+  },
+  camera: {
+    width: (Dimensions.get("screen").height * 9) / 18,
+    height: Dimensions.get("screen").height,
+    flex: 1,
+    alignItems: "center",
+  },
+  button: {
+    position: "absolute",
+    bottom: 80,
+    marginHorizontal: Dimensions.get("screen").width / 2 - 40,
+    width: 80,
+    height: 60,
+  },
+  overlay: {
+    position: "absolute",
+    top: Dimensions.get("screen").height / 2 - 180,
+    width: "90%",
+    height: Dimensions.get("screen").width * 0.9,
+    opacity: 0.3,
+    borderColor: "white",
+    borderStyle: "dashed",
+    borderRadius: 20,
+    borderWidth: 5,
+  },
+  result: {
+    flex: 1,
+    zIndex: 10,
+    position: "absolute",
+    bottom: 0,
+    height: "60%",
+    width: "100%",
+    backgroundColor: "white",
+    padding: 30,
+    alignItems: "center",
+    borderRadius: 20,
+  },
+});
