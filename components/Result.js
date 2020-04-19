@@ -1,11 +1,23 @@
 import React, { useRef, useState } from "react";
-import { StyleSheet, Dimensions, Animated, View, Text } from "react-native";
+import {
+  StyleSheet,
+  Dimensions,
+  Animated,
+  View,
+  Text,
+  Easing,
+  //   Image,
+} from "react-native";
 import { Button } from "galio-framework";
+// import ClipLoader from "react-spinners/ClipLoader";
+// import { css } from "@emotion/core";
+import Analyzing from "./Analyzing";
 
 export default Result = ({ result, analyzing, takePicture }) => {
   const slideAnim = useRef(
     new Animated.Value(Dimensions.get("screen").height - 120)
   ).current;
+
   const [displayResult, setDisplayResult] = useState(0);
 
   const handlePress = () => {
@@ -14,12 +26,14 @@ export default Result = ({ result, analyzing, takePicture }) => {
       takePicture();
       Animated.timing(slideAnim, {
         toValue: Dimensions.get("screen").height * 0.15,
-        duration: 300,
+        easing: Easing.back(),
+        duration: 600,
       }).start();
     } else {
       Animated.timing(slideAnim, {
         toValue: Dimensions.get("screen").height - 120,
-        duration: 300,
+        easing: Easing.bounce,
+        duration: 900,
       }).start();
       setDisplayResult(0);
     }
@@ -36,14 +50,20 @@ export default Result = ({ result, analyzing, takePicture }) => {
         iconColor="#fff"
         style={styles.button}
         onPress={handlePress}
-        title="take picture"
-      ></Button>
+        shadowles
+      >
+        take picture
+      </Button>
       <View style={styles.resultInfo}>
         <View style={{ alignItems: "center" }}>
           {analyzing ? (
-            <Text style={{ fontFamily: "rubik-regular" }}>
-              {"\n"}Analyzing image...
-            </Text>
+            // <ClipLoader
+            //   css={override}
+            //   size={100}
+            //   color={"#000"}
+            //   loading={analyzing}
+            // />
+            <Analyzing />
           ) : (
             <Text style={{ fontFamily: "rubik-regular" }}>
               <Text style={{ fontSize: 18 }}>
@@ -73,7 +93,7 @@ const styles = StyleSheet.create({
   resultInfo: {
     flex: 1,
     paddingTop: 60,
-    width: "90%",
+    width: "100%",
     borderRadius: 20,
     backgroundColor: "white",
   },
@@ -83,5 +103,12 @@ const styles = StyleSheet.create({
     marginBottom: -30,
     height: 60,
     width: 80,
+    shadowColor: "red",
+    shadowRadius: 15,
+    elevation: 6,
+    shadowOffset: {
+      height: 13,
+      width: 1,
+    },
   },
 });
