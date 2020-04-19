@@ -70,8 +70,8 @@ export default CameraPage = () => {
   return (
     <Camera style={styles.camera} ratio="18:9" ref={(cam) => (camera = cam)}>
       <Header />
-      {/* <Image source={overlay} style={styles.overlay}></Image> */}
-      <Text style={styles.overlay}></Text>
+      <Image source={overlay} style={styles.overlay}></Image>
+      {/* <Text style={styles.overlay}></Text> */}
       <Result result={result} analyzing={analyzing} takePicture={takePicture} />
     </Camera>
   );
@@ -84,13 +84,15 @@ const styles = StyleSheet.create({
   },
   overlay: {
     position: "absolute",
-    top: Dimensions.get("screen").height / 2 - 180,
+    top:
+      Dimensions.get("screen").height / 2 -
+      (Dimensions.get("screen").width * 0.9) / 2,
     width: "90%",
     height: Dimensions.get("screen").width * 0.9,
     opacity: 0.2,
-    borderColor: "white",
-    borderStyle: "dashed",
-    borderRadius: 20,
-    borderWidth: 5,
+    // borderColor: "white",
+    // borderStyle: "dashed",
+    // borderRadius: 20,
+    // borderWidth: 5,
   },
 });

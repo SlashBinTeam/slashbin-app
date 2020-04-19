@@ -13,7 +13,7 @@ export default Result = ({ result, analyzing, takePicture }) => {
       setDisplayResult(1);
       takePicture();
       Animated.timing(slideAnim, {
-        toValue: Dimensions.get("screen").height / 2 - 240,
+        toValue: Dimensions.get("screen").height * 0.15,
         duration: 300,
       }).start();
     } else {
@@ -41,7 +41,9 @@ export default Result = ({ result, analyzing, takePicture }) => {
       <View style={styles.resultInfo}>
         <View style={{ alignItems: "center" }}>
           {analyzing ? (
-            <Text>{"\n"}Analyzing image...</Text>
+            <Text style={{ fontFamily: "rubik-regular" }}>
+              {"\n"}Analyzing image...
+            </Text>
           ) : (
             <Text style={{ fontFamily: "rubik-regular" }}>
               <Text style={{ fontSize: 18 }}>
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
   resultContainer: {
     position: "absolute",
     alignItems: "center",
-    height: Dimensions.get("screen").height - 120,
+    height: Dimensions.get("screen").height * 0.85,
     width: "100%",
     zIndex: 1,
     paddingTop: 30,
