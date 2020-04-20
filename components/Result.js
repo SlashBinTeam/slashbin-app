@@ -13,12 +13,18 @@ import { Button } from "galio-framework";
 // import { css } from "@emotion/core";
 import Analyzing from "./Analyzing";
 
-export default Result = ({ result, analyzing, takePicture }) => {
+export default Result = ({
+  result,
+  displayResult,
+  setDisplayResult,
+  analyzing,
+  takePicture,
+}) => {
   const slideAnim = useRef(
     new Animated.Value(Dimensions.get("screen").height - 120)
   ).current;
 
-  const [displayResult, setDisplayResult] = useState(0);
+  //   const [displayResult, setDisplayResult] = useState(0);
 
   const handlePress = () => {
     if (!displayResult) {
@@ -42,27 +48,24 @@ export default Result = ({ result, analyzing, takePicture }) => {
   return (
     <Animated.View style={{ ...styles.resultContainer, marginTop: slideAnim }}>
       <Button
-        onlyIcon
-        icon="camera-alt"
-        iconFamily="materialicons"
-        iconSize={30}
+        // onlyIcon
+        // icon="camera-alt"
+        // iconFamily="materialicons"
+        // iconSize={30}
         color="#27ae60"
         iconColor="#fff"
         style={styles.button}
         onPress={handlePress}
-        shadowles
       >
-        take picture
+        <Text
+          style={{ fontFamily: "rubik-bold", fontSize: 20, color: "white" }}
+        >
+          {displayResult ? <>try again</> : <>scan image</>}
+        </Text>
       </Button>
       <View style={styles.resultInfo}>
         <View style={{ alignItems: "center" }}>
           {analyzing ? (
-            // <ClipLoader
-            //   css={override}
-            //   size={100}
-            //   color={"#000"}
-            //   loading={analyzing}
-            // />
             <Analyzing />
           ) : (
             <Text style={{ fontFamily: "rubik-regular" }}>
@@ -70,7 +73,7 @@ export default Result = ({ result, analyzing, takePicture }) => {
                 The item has to be recycled as:
               </Text>
               {"\n"}
-              <Text style={{ fontSize: 25, fontFamily: "rubik-bold" }}>
+              <Text style={{ fontSize: 20, fontFamily: "rubik-bold" }}>
                 {result}
               </Text>
             </Text>
@@ -102,9 +105,8 @@ const styles = StyleSheet.create({
     zIndex: 2,
     marginBottom: -30,
     height: 60,
-    width: 80,
-    shadowColor: "red",
-    shadowRadius: 15,
+    width: "60%",
+    borderRadius: 30,
     elevation: 6,
     shadowOffset: {
       height: 13,

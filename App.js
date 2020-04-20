@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import CameraPage from "./components/CameraPage";
 import Loading from "./components/Loading";
 import { AppLoading } from "expo";
+import { View } from "react-native";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -21,5 +22,9 @@ export default function App() {
     return <AppLoading />;
   }
 
-  return ready ? <CameraPage /> : <Loading />;
+  return (
+    <View style={{ flex: 1, backgroundColor: "black" }}>
+      {ready ? <CameraPage /> : <Loading />}
+    </View>
+  );
 }

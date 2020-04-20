@@ -5,14 +5,17 @@ import { Dimensions, StyleSheet, View, Image } from "react-native";
 import Header from "./Header";
 import Result from "./Result";
 import overlay from "../assets/overlay.png";
+import Info from "./Info";
 
 export default CameraPage = () => {
   let camera = null;
   const [hasPermission, setHasPermission] = useState(null);
 
-  const url = "http://192.168.0.12:5010/";
+  const url = "http://192.168.0.6:5010/";
   const [analyzing, setAnalyzing] = useState(0);
+  const [displayResult, setDisplayResult] = useState(0);
   const [result, setResult] = useState("");
+  const [info, setInfo] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -62,37 +65,48 @@ export default CameraPage = () => {
     if (Camera) {
       setAnalyzing(1);
       let photo = await camera.takePictureAsync({ base64: true, quality: 0.4 });
-      console.log(Object.keys(photo));
       sendImage(photo);
     }
   };
 
   return (
-    <Camera style={styles.camera} ratio="18:9" ref={(cam) => (camera = cam)}>
-      <Header />
-      <Image source={overlay} style={styles.overlay}></Image>
-      {/* <Text style={styles.overlay}></Text> */}
-      <Result result={result} analyzing={analyzing} takePicture={takePicture} />
-    </Camera>
+    <>
+      <Header setInfo={setInfo} />
+      <Camera
+        style={{ ...styles.camera, opacity: displayResult ? 0.2 : 1 }}
+        ratio="18:9"
+        ref={(cam) => (camera = cam)}
+      >
+        <Image source={overlay} style={styles.overlay}></Image>
+      </Camera>
+      <Result
+        result={result}
+        analyzing={analyzing}
+        displayResult={displayResult}
+        setDisplayResult={setDisplayResult}
+        takePicture={takePicture}
+      />
+      {info ? <Info setInfo={setInfo} /> : null}
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   camera: {
     flex: 1,
+    position: "absolute",
+    width: "100%",
+    height: "100%",
     alignItems: "center",
+    zIndex: -1,
   },
   overlay: {
     position: "absolute",
     top:
       Dimensions.get("screen").height / 2 -
-      (Dimensions.get("screen").width * 0.9) / 2,
-    width: "90%",
-    height: Dimensions.get("screen").width * 0.9,
+      (Dimensions.get("screen").width * 0.8) / 2,
+    width: "80%",
+    height: Dimensions.get("screen").width * 0.8,
     opacity: 0.2,
-    // borderColor: "white",
-    // borderStyle: "dashed",
-    // borderRadius: 20,
-    // borderWidth: 5,
   },
 });

@@ -3,12 +3,12 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Icon } from "galio-framework";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default Header = () => {
+export default Header = ({ setInfo }) => {
   return (
     <LinearGradient
       colors={[
-        "rgba(0,0,0,0.8)",
-        "rgba(0,0,0,0.4)",
+        "rgba(0,0,0,1)",
+        // "rgba(0,0,0,0.4)",
         "rgba(0,0,0,0.2)",
         "transparent",
       ]}
@@ -17,8 +17,8 @@ export default Header = () => {
       <View>
         <Text style={styles.text}>./bin</Text>
       </View>
-      <TouchableOpacity onPress={() => alert("INFO")}>
-        <Icon name="info" family="fontawesome" color="white" size={35} />
+      <TouchableOpacity onPress={() => setInfo(1)}>
+        <Icon name="info" family="fontawesome" color="white" size={30} />
       </TouchableOpacity>
     </LinearGradient>
   );
@@ -33,10 +33,9 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "space-between",
     flexDirection: "row",
-    zIndex: -1,
   },
   text: {
-    fontSize: 35,
+    fontSize: 30,
     fontFamily: "rubik-bold",
     color: "white",
     backgroundColor: "transparent",
