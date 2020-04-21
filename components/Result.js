@@ -12,6 +12,7 @@ import { Button } from "galio-framework";
 // import ClipLoader from "react-spinners/ClipLoader";
 // import { css } from "@emotion/core";
 import Analyzing from "./Analyzing";
+import Complete from "./Complete";
 
 export default Result = ({
   result,
@@ -19,6 +20,9 @@ export default Result = ({
   setDisplayResult,
   analyzing,
   takePicture,
+  storeImage,
+  label,
+  setLabel,
 }) => {
   const slideAnim = useRef(
     new Animated.Value(Dimensions.get("screen").height - 120)
@@ -48,12 +52,8 @@ export default Result = ({
   return (
     <Animated.View style={{ ...styles.resultContainer, marginTop: slideAnim }}>
       <Button
-        // onlyIcon
-        // icon="camera-alt"
-        // iconFamily="materialicons"
-        // iconSize={30}
         color="#27ae60"
-        iconColor="#fff"
+        // iconColor="#fff"
         style={styles.button}
         onPress={handlePress}
       >
@@ -68,15 +68,12 @@ export default Result = ({
           {analyzing ? (
             <Analyzing />
           ) : (
-            <Text style={{ fontFamily: "rubik-regular" }}>
-              <Text style={{ fontSize: 18 }}>
-                The item has to be recycled as:
-              </Text>
-              {"\n"}
-              <Text style={{ fontSize: 20, fontFamily: "rubik-bold" }}>
-                {result}
-              </Text>
-            </Text>
+            <Complete
+              result={result}
+              storeImage={storeImage}
+              setLabel={setLabel}
+              label={label}
+            />
           )}
         </View>
       </View>
@@ -108,9 +105,5 @@ const styles = StyleSheet.create({
     width: "60%",
     borderRadius: 30,
     elevation: 6,
-    shadowOffset: {
-      height: 13,
-      width: 1,
-    },
   },
 });

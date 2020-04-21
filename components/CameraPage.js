@@ -11,11 +11,13 @@ export default CameraPage = () => {
   let camera = null;
   const [hasPermission, setHasPermission] = useState(null);
 
-  const url = "http://192.168.0.6:5010/";
+  const url = "http://192.168.0.9:5010/";
   const [analyzing, setAnalyzing] = useState(0);
   const [displayResult, setDisplayResult] = useState(0);
   const [result, setResult] = useState("");
   const [info, setInfo] = useState(0);
+  const [photo, setPhoto] = useState({});
+  const [label, setLabel] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -31,15 +33,41 @@ export default CameraPage = () => {
     return <Text>No access to camera</Text>;
   }
 
-  const sendImage = (photo) => {
+  const storeImage = () => {
+    // console.log(photo);
+    const data = new FormData();
+    data.append("label", label);
+    data.append("width", photo.width);
+    data.append("photo", {
+      uri: photo.uri,
+      type: "image/jpeg",
+      name: "photo",
+    });
+
+    fetch(url + "store", {
+      method: "post",
+      body: data,
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        final = JSON.parse(responseJson);
+        alert(final.message);
+      })
+      .catch((error) => {
+        console.log("error");
+        console.error(error);
+      });
+  };
+
+  const sendImage = (image) => {
     // POST request to flask api with the image taken from the camera
     let prediction;
 
     const data = new FormData();
-    data.append("height", photo.height);
-    data.append("width", photo.width);
+    data.append("height", image.height);
+    data.append("width", image.width);
     data.append("photo", {
-      uri: photo.uri,
+      uri: image.uri,
       type: "image/jpeg",
       name: "photo",
     });
@@ -64,8 +92,9 @@ export default CameraPage = () => {
     // snap picture and call function to send it to server
     if (Camera) {
       setAnalyzing(1);
-      let photo = await camera.takePictureAsync({ base64: true, quality: 0.4 });
-      sendImage(photo);
+      let image = await camera.takePictureAsync({ base64: true, quality: 0.4 });
+      setPhoto(image);
+      sendImage(image);
     }
   };
 
@@ -85,6 +114,9 @@ export default CameraPage = () => {
         displayResult={displayResult}
         setDisplayResult={setDisplayResult}
         takePicture={takePicture}
+        storeImage={storeImage}
+        label={label}
+        setLabel={setLabel}
       />
       {info ? <Info setInfo={setInfo} /> : null}
     </>
