@@ -11,7 +11,7 @@ export default CameraPage = () => {
   let camera = null;
   const [hasPermission, setHasPermission] = useState(null);
 
-  const url = "http://192.168.0.9:5010/";
+  const url = "http://35.242.176.203:2000/";
   const [analyzing, setAnalyzing] = useState(0);
   const [displayResult, setDisplayResult] = useState(0);
   const [result, setResult] = useState("");
@@ -50,8 +50,8 @@ export default CameraPage = () => {
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        final = JSON.parse(responseJson);
-        alert(final.message);
+        let finalMsg = JSON.parse(responseJson);
+        alert(finalMsg.message);
       })
       .catch((error) => {
         console.log("error");
