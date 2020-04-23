@@ -8,6 +8,8 @@ Sviluppata da Bruno Morelli, [Alberto Mosconi](https://www.albertomosconi.it) e 
 
 Questo è un progetto creato da tre studenti del **Politecnico di Milano per aiutare a combattere i cambiamenti climatici**. Crediamo che l’intelligenza artificiale sia un’arma ancora tropo poco utilizzata. Vogliamo **semplificare il processo di smaltimento dei rifiuti dalla sua base** cioè dal consumatore. Poiché alle volte la raccolta differenziata è un processo poco intuitivo per i più siamo convinti che la digitalizzazione sia la chiave per renderla più semplice e divertente.
 
+![screenshot](./iphone_mockup.png)
+
 ## Informazioni di utilizzo
 
 Poiché la raccolta differenziata di alcuni elementi tra i quali Tetrapak e Alluminio la raccolta differenziata varia da comune a comune **./bin mostrerà il canale di smaltimento più comune sul territorio nazionale** (esempio carta per tetrapak e plastica per alluminio). Con l’obiettivo di riuscire in future versioni a personalizzare l’esperienza in base alla posizione dell’utente.  
