@@ -1,6 +1,6 @@
 # ./bin - Un'app per salvare il pianeta
 
-Sviluppata da Bruno Morelli, [Alberto Mosconi](https://www.albertomosconi.it) e [Matteo Oldani](https://www.matteoldani.it).
+Sviluppata da Bruno Morelli, [Alberto Mosconi](https://www.albertomosconi.it) e [Matteo Oldani](http://www.matteoldani.it).
 
 ## Info
 
