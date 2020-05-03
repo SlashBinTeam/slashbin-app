@@ -89,42 +89,35 @@ export default Info = ({ setInfo }) => {
               dei singoli utenti in alcun modo.
             </Text>
           </View>
+          <View style={{ height: 90 }}></View>
         </SafeAreaView>
       </ScrollView>
-      <SafeAreaView
-        style={{
-          ...styles.paragraph,
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          //   paddingBottom: 60,
-        }}
+      <Button
+        round
+        uppercase
+        color="#27ae60"
+        style={styles.button}
+        onPress={goBack}
       >
-        <Button
-          round
-          uppercase
-          color="#27ae60"
-          style={styles.button}
-          onPress={goBack}
+        <Text
+          style={{ fontFamily: "rubik-bold", fontSize: 20, color: "white" }}
         >
-          Torna alla home
-        </Button>
-      </SafeAreaView>
+          torna alla home
+        </Text>
+      </Button>
     </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     width: "100%",
     height: "100%",
     backgroundColor: "white",
     position: "absolute",
-    justifyContent: "center",
     alignItems: "center",
     zIndex: 100,
-    paddingVertical: 50,
+    paddingTop: 50,
   },
   paragraph: {
     paddingHorizontal: 20,
@@ -139,6 +132,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   button: {
+    position: "absolute",
+    zIndex: 2,
+    bottom: 30,
     height: 60,
+    width: "60%",
+    borderRadius: 30,
+    elevation: 6,
   },
 });
