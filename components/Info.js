@@ -40,19 +40,21 @@ export default Info = ({ setInfo }) => {
         marginLeft: infoAnim,
       }}
     >
+<<<<<<< HEAD
       <ScrollView bounces="false">
+=======
+      <ScrollView bounces={false}>
+>>>>>>> 8700d05c371c48c4b0cb0cddbdc187155d5ddd36
         <SafeAreaView>
           <View style={styles.paragraph}>
-            <Text h3 style={styles.title}>
-              Info
-            </Text>
-            <Text p>
+            <Text style={styles.title}>Info</Text>
+            <Text style={styles.text}>
               ./bin è un'applicazione che tramite intelligenza artificiale e
               machine learning permette agli utenti di scansionare un oggetto e
               di sapere in tempo reale dove dovrà essere buttato.
             </Text>
 
-            <Text p>
+            <Text style={styles.text}>
               Questo è un progetto creato da tre studenti del Politecnico di
               Milano per aiutare a combattere i cambiamenti climatici. Crediamo
               che l’intelligenza artificiale sia un’arma ancora tropo poco
@@ -65,10 +67,8 @@ export default Info = ({ setInfo }) => {
           </View>
 
           <View style={styles.paragraph}>
-            <Text h3 style={styles.title}>
-              Utilizzo
-            </Text>
-            <Text p>
+            <Text style={styles.title}>Utilizzo</Text>
+            <Text style={styles.text}>
               Poiché la raccolta differenziata di alcuni elementi tra i quali
               Tetrapak e Alluminio varia da comune a comune ./bin mostrerà il
               canale di smaltimento più comune sul territorio nazionale (esempio
@@ -81,10 +81,8 @@ export default Info = ({ setInfo }) => {
           </View>
 
           <View style={styles.paragraph}>
-            <Text h3 style={styles.title}>
-              Disclaimer
-            </Text>
-            <Text p>
+            <Text style={styles.title}>Disclaimer</Text>
+            <Text style={styles.text}>
               L’applicazione deve essere vista solo come un aiuto, la scelta
               finale di dove buttare un prodotto è lasciata al singolo
               consumatore perciò non ci assumiamo nessuna responsabilità di
@@ -135,5 +133,9 @@ const styles = StyleSheet.create({
   title: {
     textAlign: "center",
     fontFamily: "rubik-bold",
+    fontSize: 35,
+  },
+  text: {
+    fontSize: 18,
   },
 });
