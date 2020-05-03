@@ -43,7 +43,9 @@ export default Info = ({ setInfo }) => {
       <ScrollView>
         <SafeAreaView>
           <View style={styles.paragraph}>
-            <Text h3>Info</Text>
+            <Text h3 style={styles.title}>
+              Info
+            </Text>
             <Text p>
               ./bin è un'applicazione che tramite intelligenza artificiale e
               machine learning permette agli utenti di scansionare un oggetto e
@@ -63,7 +65,9 @@ export default Info = ({ setInfo }) => {
           </View>
 
           <View style={styles.paragraph}>
-            <Text h3>Informazioni di utilizzo</Text>
+            <Text h3 style={styles.title}>
+              Utilizzo
+            </Text>
             <Text p>
               Poiché la raccolta differenziata di alcuni elementi tra i quali
               Tetrapak e Alluminio varia da comune a comune ./bin mostrerà il
@@ -77,7 +81,9 @@ export default Info = ({ setInfo }) => {
           </View>
 
           <View style={styles.paragraph}>
-            <Text h3>Disclaimer</Text>
+            <Text h3 style={styles.title}>
+              Disclaimer
+            </Text>
             <Text p>
               L’applicazione deve essere vista solo come un aiuto, la scelta
               finale di dove buttare un prodotto è lasciata al singolo
@@ -91,6 +97,7 @@ export default Info = ({ setInfo }) => {
           </View>
           <View
             style={{
+              ...styles.paragraph,
               flex: 1,
               justifyContent: "center",
               alignItems: "center",
@@ -116,10 +123,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     zIndex: 100,
-    paddingTop: 40,
+    paddingTop: 50,
   },
   paragraph: {
     paddingHorizontal: 20,
     paddingBottom: 20,
+  },
+  title: {
+    textAlign: "center",
+    fontFamily: "rubik-bold",
   },
 });
