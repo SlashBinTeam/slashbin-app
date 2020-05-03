@@ -59,7 +59,15 @@ Inoltre ricordiamo che bottiglie e contenitori vanno puliti prima di essere butt
       <Text h3>Disclaimer</Text>
       <Text p>L’applicazione deve essere vista solo come un aiuto, la scelta finale di dove buttare un prodotto è lasciata al singolo consumatore perciò non ci assumiamo nessuna responsabilità di eventuali errori di differenziazione. Detto ciò confidiamo nella nostra tecnologia e siamo sicuri che con il tempo andrà sempre più a migliorarsi. Le immagini scansionate dagli utenti saranno usate dal server per migliorare gli algoritmi senza intaccare la privacy dei singoli utenti in alcun modo.</Text>
       </View> 
-      <Button onPress={goBack}>Torna alla home</Button>
+      <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+      }}>
+   
+      <Button round uppercase color="success" onPress={goBack}>Torna alla home</Button>
+      </View>
       </SafeAreaView>
       </ScrollView>
      
