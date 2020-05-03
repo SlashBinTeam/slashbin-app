@@ -16,7 +16,7 @@ export default function Loading() {
 
       <Text style={styles.button}>
         {" "}
-        Created by: {"\n"} Bruno Morelli, Alberto Mosconi, Matteo Oldani
+        Creata da: {"\n"} Bruno Morelli, Alberto Mosconi, Matteo Oldani
       </Text>
     </View>
   );

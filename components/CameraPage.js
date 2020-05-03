@@ -30,7 +30,7 @@ export default CameraPage = () => {
     return <View />;
   }
   if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+    return <Text>Accesso alla fotocamera negato</Text>;
   }
 
   const storeImage = () => {

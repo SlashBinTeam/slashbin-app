@@ -24,7 +24,7 @@ export default Scanning = () => {
     return <View />;
   }
   if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+    return <Text>Accesso alla fotocamera negato</Text>;
   }
 
   const sendImage = (photo) => {
@@ -100,15 +100,15 @@ export default Scanning = () => {
             size="small"
             onPress={() => setDisplayResult(0)}
           >
-            Scan Again
+            Scansiona ancora
           </Button>
           {analyizing ? (
-            <Text>{"\n"}Analyzing image...</Text>
+            <Text>{"\n"}Sto analizzando la foto...</Text>
           ) : (
             <View style={{ alignItems: "center" }}>
               <Text style={{ fontSize: 18 }}>
                 {"\n"}
-                The item has to be recycled as:
+                Questo elemento viene riciclato nel:
               </Text>
               <Text style={{ fontWeight: "bold", fontSize: 25 }}>{result}</Text>
             </View>

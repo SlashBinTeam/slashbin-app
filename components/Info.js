@@ -102,7 +102,7 @@ export default Info = ({ setInfo }) => {
         <Text
           style={{ fontFamily: "rubik-bold", fontSize: 20, color: "white" }}
         >
-          torna alla home
+          Torna alla home
         </Text>
       </Button>
     </Animated.View>

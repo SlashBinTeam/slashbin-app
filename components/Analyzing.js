@@ -19,9 +19,9 @@ export default Analyzing = () => {
   return (
     <>
       <Text style={{ fontFamily: "rubik-regular", fontSize: 18 }}>
-        We are analyzing your image...
+      Sto analizzando la foto....
         {"\n"}
-        Please wait.
+        Per favore attendi.
         {"\n"}
       </Text>
       <Animated.Image

@@ -6,7 +6,7 @@ export default Complete = ({ result, storeImage, setLabel, label }) => {
   return (
     <View style={{ marginHorizontal: "10%" }}>
       <Text style={{ fontFamily: "rubik-regular", fontSize: 18 }}>
-        The item has to be recycled as:
+      Questo elemento viene riciclato nel:
       </Text>
       <Text style={{ fontSize: 23, fontFamily: "rubik-bold" }}>{result}</Text>
       <View
@@ -18,17 +18,16 @@ export default Complete = ({ result, storeImage, setLabel, label }) => {
         }}
       ></View>
       <Text style={{ fontFamily: "rubik-bold", fontSize: 20 }}>
-        Help us Improve!
+        Aiutaci a migliorare!
         {"\n"}
       </Text>
       <Text style={{ fontFamily: "rubik-regular", fontSize: 18 }}>
-        Was the correction correct? If not, please correct us! By doing this our
-        service will keep improving.
+      È corretta? Se non lo è, per favore correggi! Facendolo ci aiuterai a migliorare il servizio.
         {"\n"}
         {"\n"}
         {/* </Text> */}
         {/* <Text> */}
-        Please select the correct category and press the button, thank you!
+        Per favore seleziona la categoria corretta e premi il pulsante, grazie!
         {"\n"}
       </Text>
       <View style={{ flex: 1, alignItems: "center" }}>

@@ -60,7 +60,7 @@ export default Result = ({
         <Text
           style={{ fontFamily: "rubik-bold", fontSize: 20, color: "white" }}
         >
-          {displayResult ? <>try again</> : <>scan image</>}
+          {displayResult ? <>riprova</> : <>scansiona foto</>}
         </Text>
       </Button>
       <View style={styles.resultInfo}>
