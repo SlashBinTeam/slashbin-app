@@ -40,7 +40,7 @@ export default Info = ({ setInfo }) => {
         marginLeft: infoAnim,
       }}
     >
-      <ScrollView>
+      <ScrollView bounces="false">
         <SafeAreaView>
           <View style={styles.paragraph}>
             <Text h3 style={styles.title}>
@@ -95,20 +95,23 @@ export default Info = ({ setInfo }) => {
               dei singoli utenti in alcun modo.
             </Text>
           </View>
-          <View
-            style={{
-              ...styles.paragraph,
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Button round uppercase color="#27ae60" onPress={goBack}>
-              Torna alla home
-            </Button>
-          </View>
+          
+          
         </SafeAreaView>
       </ScrollView>
+      <SafeAreaView
+      style={{
+        ...styles.paragraph,
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        paddingBottom: 10,
+      }}
+    >
+      <Button round uppercase color="#27ae60" onPress={goBack}>
+        Torna alla home
+      </Button>
+      </SafeAreaView>
     </Animated.View>
   );
 };
