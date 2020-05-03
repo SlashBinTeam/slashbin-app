@@ -10,7 +10,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import { Button } from "galio-framework";
-import { Text } from 'galio-framework';
+import { Text } from "galio-framework";
 
 export default Info = ({ setInfo }) => {
   const infoAnim = useRef(new Animated.Value(Dimensions.get("screen").width))
@@ -39,38 +39,69 @@ export default Info = ({ setInfo }) => {
         // transform: [{ scaleY: infoAnim }, { scaleX: infoAnim }],
         marginLeft: infoAnim,
       }}
-    ><ScrollView>
-      <SafeAreaView>
-     <View >
-      <Text h3>Info</Text>
-      <Text p >./bin è un'applicazione che tramite intelligenza artificiale e machine learning permette agli utenti di scansionare un oggetto e di sapere in tempo reale dove dovrà essere buttato.</Text>
-      
-      <Text p>Questo è un progetto creato da tre studenti del Politecnico di Milano per aiutare a combattere i cambiamenti climatici. Crediamo che l’intelligenza artificiale sia un’arma ancora tropo poco utilizzata. Vogliamo semplificare il processo di smaltimento dei rifiuti dalla sua base cioè dal consumatore. Poiché alle volte la raccolta differenziata è un processo poco intuitivo per i più siamo convinti che la digitalizzazione sia la chiave per renderla più semplice e divertente.</Text>
+    >
+      <ScrollView>
+        <SafeAreaView>
+          <View style={styles.paragraph}>
+            <Text h3>Info</Text>
+            <Text p>
+              ./bin è un'applicazione che tramite intelligenza artificiale e
+              machine learning permette agli utenti di scansionare un oggetto e
+              di sapere in tempo reale dove dovrà essere buttato.
+            </Text>
 
-    </View> 
+            <Text p>
+              Questo è un progetto creato da tre studenti del Politecnico di
+              Milano per aiutare a combattere i cambiamenti climatici. Crediamo
+              che l’intelligenza artificiale sia un’arma ancora tropo poco
+              utilizzata. Vogliamo semplificare il processo di smaltimento dei
+              rifiuti dalla sua base cioè dal consumatore. Poiché alle volte la
+              raccolta differenziata è un processo poco intuitivo per i più,
+              siamo convinti che la digitalizzazione sia la chiave per renderla
+              più semplice e divertente.
+            </Text>
+          </View>
 
-    <View>
-      <Text h3>Informazioni di utilizzo</Text>
-      <Text p>Poiché la raccolta differenziata di alcuni elementi tra i quali Tetrapak e Alluminio la raccolta differenziata varia da comune a comune ./bin mostrerà il canale di smaltimento più comune sul territorio nazionale (esempio carta per tetrapak e plastica per alluminio). Con l’obiettivo di riuscire in future versioni a personalizzare l’esperienza in base alla posizione dell’utente.
-Inoltre ricordiamo che bottiglie e contenitori vanno puliti prima di essere buttati nell’apposito contenitore.</Text>
-      </View> 
+          <View style={styles.paragraph}>
+            <Text h3>Informazioni di utilizzo</Text>
+            <Text p>
+              Poiché la raccolta differenziata di alcuni elementi tra i quali
+              Tetrapak e Alluminio varia da comune a comune ./bin mostrerà il
+              canale di smaltimento più comune sul territorio nazionale (esempio
+              carta per tetrapak e plastica per alluminio). Con l’obiettivo di
+              riuscire in future versioni a personalizzare l’esperienza in base
+              alla posizione dell’utente. Inoltre ricordiamo che bottiglie e
+              contenitori vanno puliti prima di essere buttati nell’apposito
+              contenitore.
+            </Text>
+          </View>
 
-      <View>
-      <Text h3>Disclaimer</Text>
-      <Text p>L’applicazione deve essere vista solo come un aiuto, la scelta finale di dove buttare un prodotto è lasciata al singolo consumatore perciò non ci assumiamo nessuna responsabilità di eventuali errori di differenziazione. Detto ciò confidiamo nella nostra tecnologia e siamo sicuri che con il tempo andrà sempre più a migliorarsi. Le immagini scansionate dagli utenti saranno usate dal server per migliorare gli algoritmi senza intaccare la privacy dei singoli utenti in alcun modo.</Text>
-      </View> 
-      <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-      }}>
-   
-      <Button round uppercase color="success" onPress={goBack}>Torna alla home</Button>
-      </View>
-      </SafeAreaView>
+          <View style={styles.paragraph}>
+            <Text h3>Disclaimer</Text>
+            <Text p>
+              L’applicazione deve essere vista solo come un aiuto, la scelta
+              finale di dove buttare un prodotto è lasciata al singolo
+              consumatore perciò non ci assumiamo nessuna responsabilità di
+              eventuali errori di differenziazione. Detto ciò confidiamo nella
+              nostra tecnologia e siamo sicuri che con il tempo andrà sempre più
+              a migliorarsi. Le immagini scansionate dagli utenti saranno usate
+              dal server per migliorare gli algoritmi senza intaccare la privacy
+              dei singoli utenti in alcun modo.
+            </Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Button round uppercase color="#27ae60" onPress={goBack}>
+              Torna alla home
+            </Button>
+          </View>
+        </SafeAreaView>
       </ScrollView>
-     
     </Animated.View>
   );
 };
@@ -85,5 +116,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     zIndex: 100,
+    paddingTop: 40,
+  },
+  paragraph: {
+    paddingHorizontal: 20,
+    paddingBottom: 20,
   },
 });
