@@ -40,11 +40,7 @@ export default Info = ({ setInfo }) => {
         marginLeft: infoAnim,
       }}
     >
-<<<<<<< HEAD
-      <ScrollView bounces="false">
-=======
       <ScrollView bounces={false}>
->>>>>>> 8700d05c371c48c4b0cb0cddbdc187155d5ddd36
         <SafeAreaView>
           <View style={styles.paragraph}>
             <Text style={styles.title}>Info</Text>
@@ -93,22 +89,26 @@ export default Info = ({ setInfo }) => {
               dei singoli utenti in alcun modo.
             </Text>
           </View>
-          
-          
         </SafeAreaView>
       </ScrollView>
       <SafeAreaView
-      style={{
-        ...styles.paragraph,
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        paddingBottom: 10,
-      }}
-    >
-      <Button round uppercase color="#27ae60" onPress={goBack}>
-        Torna alla home
-      </Button>
+        style={{
+          ...styles.paragraph,
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          //   paddingBottom: 60,
+        }}
+      >
+        <Button
+          round
+          uppercase
+          color="#27ae60"
+          style={styles.button}
+          onPress={goBack}
+        >
+          Torna alla home
+        </Button>
       </SafeAreaView>
     </Animated.View>
   );
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     zIndex: 100,
-    paddingTop: 50,
+    paddingVertical: 50,
   },
   paragraph: {
     paddingHorizontal: 20,
@@ -137,5 +137,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
+  },
+  button: {
+    height: 60,
   },
 });
